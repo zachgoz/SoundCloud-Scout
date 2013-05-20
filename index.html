@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Randomizer - an INFO 151 Team Project</title>
+
+<script src="http://connect.soundcloud.com/sdk.js"></script>
+<script>
+SC.initialize({
+  client_id: 'a9ab68717b53a7f76ffe988af3972cc4'
+});
+// find all sounds of buskers licensed under 'creative commons share alike'
+function getTracks(){
+	query = document.getElementById('search').value;
+SC.get('/tracks', { q: query}, function(tracks) {
+  console.log(tracks);
+  song = tracks[0];
+  length = tracks.length;
+  printed = 0
+  //Print the titles of the returned songs
+  while(printed <= length){
+  	document.writeln(tracks[printed].title + "<br />");
+  	printed = printed + 1;
+  }
+  
+});
+}
+</script>
+
+
+    </head>
+    <body>
+    	<form action="javascript:getTracks()">
+    		Search: <input type="text" name = "search" id = "search">
+    	<input type="submit" value="Submit">
+    	</form>
+    </body>
+</html>
